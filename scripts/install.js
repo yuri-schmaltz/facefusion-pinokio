@@ -1,4 +1,5 @@
-const path = require('path');
+const { envPath, onError } = require('./utils');
+const { FACEFUSION_VERSION } = require('./config');
 
 function install(kernel)
 {
@@ -33,14 +34,16 @@ module.exports = async kernel =>
 				method: 'shell.run',
 				params:
 				{
-					message: 'git clone https://github.com/facefusion/facefusion --branch 3.3.2 --single-branch'
+					message: 'git clone https://github.com/facefusion/facefusion --branch ' + FACEFUSION_VERSION + ' --single-branch',
+					on: onError
 				}
 			},
 			{
 				method: 'shell.run',
 				params:
 				{
-					message: 'conda install conda=25.5.1 --yes'
+					message: 'conda install conda=25.5.1 --yes',
+					on: onError
 				}
 			},
 			{
@@ -50,8 +53,9 @@ module.exports = async kernel =>
 					message: 'conda install conda-forge::ffmpeg=7.0.2 conda-forge::libvorbis=1.3.7 --yes',
 					conda:
 					{
-						path: path.resolve(__dirname, '.env')
-					}
+						path: envPath
+					},
+					on: onError
 				}
 			},
 			{
@@ -62,8 +66,9 @@ module.exports = async kernel =>
 					message: 'conda install conda-forge::openvino=2025.1.0 --yes',
 					conda:
 					{
-						path: path.resolve(__dirname, '.env')
-					}
+						path: envPath
+					},
+					on: onError
 				}
 			},
 			{
@@ -78,8 +83,9 @@ module.exports = async kernel =>
 					],
 					conda:
 					{
-						path: path.resolve(__dirname, '.env')
-					}
+						path: envPath
+					},
+					on: onError
 				}
 			},
 			{
@@ -90,8 +96,9 @@ module.exports = async kernel =>
 					path: 'facefusion',
 					conda:
 					{
-						path: path.resolve(__dirname, '.env')
-					}
+						path: envPath
+					},
+					on: onError
 				}
 			},
 			{

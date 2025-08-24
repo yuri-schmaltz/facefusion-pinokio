@@ -11,6 +11,7 @@
 	"scripts":
 	{
 		"lint": "eslint .",
-		"fix": "npm run lint -- --fix"
+		"fix": "npm run lint -- --fix",
+		"test": "node --test"
 	}
 }

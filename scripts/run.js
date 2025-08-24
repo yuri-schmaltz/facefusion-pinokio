@@ -1,4 +1,4 @@
-const path = require('path');
+const { envPath, onError } = require('./utils');
 
 module.exports = () =>
 {
@@ -29,10 +29,11 @@ module.exports = () =>
 					path: 'facefusion',
 					conda:
 					{
-						path: path.resolve(__dirname, '.env')
+						path: envPath
 					},
 					on:
 					[
+						...onError,
 						{
 							event: '/(http:\/\/[0-9.:]+)/',
 							done: true
