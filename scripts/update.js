@@ -1,3 +1,6 @@
+const { FACEFUSION_VERSION } = require('./config');
+const { onError } = require('./utils');
+
 module.exports = () =>
 {
 	const config =
@@ -8,7 +11,8 @@ module.exports = () =>
 				method: 'shell.run',
 				params:
 				{
-					'message': 'git pull'
+					message: 'git pull',
+					on: onError
 				}
 			},
 			{
@@ -16,15 +20,17 @@ module.exports = () =>
 				params:
 				{
 					message: 'git pull --tags',
-					path: 'facefusion'
+					path: 'facefusion',
+					on: onError
 				}
 			},
 			{
 				method: 'shell.run',
 				params:
 				{
-					message: 'git checkout 3.3.2',
-					path: 'facefusion'
+					message: 'git checkout ' + FACEFUSION_VERSION,
+					path: 'facefusion',
+					on: onError
 				}
 			}
 		]

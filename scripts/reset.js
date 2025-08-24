@@ -1,4 +1,4 @@
-const path = require('path');
+const { envPath, onError } = require('./utils');
 
 module.exports = () =>
 {
@@ -10,15 +10,17 @@ module.exports = () =>
 				method: 'fs.rm',
 				params:
 				{
-					'path': 'facefusion'
-				}
+					path: 'facefusion'
+				},
+				on: onError
 			},
-{
+			{
 				method: 'fs.rm',
 				params:
 				{
-					path: path.resolve(__dirname, '.env')
-				}
+					path: envPath
+				},
+				on: onError
 			}
 		]
 	};

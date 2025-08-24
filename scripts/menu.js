@@ -1,10 +1,12 @@
 const path = require('path');
 
+const { envPath } = require('./utils');
+
 module.exports = async kernel =>
 {
 	const menu = [];
 
-	if (!await kernel.exists(path.resolve(__dirname, '.env')))
+	if (!await kernel.exists(envPath))
 	{
 		menu.push(
 		{
