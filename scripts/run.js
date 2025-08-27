@@ -41,13 +41,13 @@ module.exports = () =>
 					]
 				}
 			},
-			{
-				method: 'local.set',
-				params:
-				{
-					url: '{{ input.stdout.match(/(http:\\S+)/gi)[0] }}'
-				}
-			},
+                        {
+                                method: 'local.set',
+                                params:
+                                {
+                                        url: '{{ (input.stdout.match(/(http:\\S+)/gi) || [])[0] }}'
+                                }
+                        },
 			{
 				method: 'browser.open',
 				params:
